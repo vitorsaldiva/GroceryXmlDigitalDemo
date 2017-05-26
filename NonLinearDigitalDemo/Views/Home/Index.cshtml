@@ -1,0 +1,27 @@
+﻿@model IEnumerable<NonLinearDigitalDemo.Models.Product>
+
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="jumbotron">
+    <h1>Grocery Store</h1>
+</div>
+
+<div class="row">
+    <h2>Select your products</h2>
+    @foreach (var item in Model)
+    {
+        <div class="col-sm-6 col-md-3">
+            <input type="hidden" value="@item.Sku" />
+            <img src="@item.ImageUrl"  height="250px" width="180px"/>
+            <br />
+            <label>@item.Name</label>
+            <br />
+            <label>@item.Price</label>
+            <div class="checkbox">
+                <label><input type="checkbox" value="" class="form-check-input" >Add to Cart</label>
+            </div>
+        </div>
+    }
+</div>

@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Groceries>
+  <product>
+    <Sku>002</Sku>
+    <Name>Kellog's Bar</Name>
+    <ImageUrl>http://www.kelloggs.co.uk/content/dam/workarea/assetpushqueue/images/web-raw-approved/std.lang.all/94/01/prod_img-4809401.jpg.thumb.319.319.png</ImageUrl>
+    <Price>16.99</Price>
+    <observation></observation>
+  </product>
+  <product>
+    <Sku>003</Sku>
+    <Name>Cheerios cereals</Name>
+    <ImageUrl>https://upload.wikimedia.org/wikipedia/en/6/65/Wiki_cheerios.jpg</ImageUrl>
+    <Price>14.99</Price>
+    <observation></observation>
+  </product>
+  <product xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <Sku>004</Sku>
+    <Name>Kashi Straberry cereals</Name>
+    <ImageUrl>https://images-na.ssl-images-amazon.com/images/I/51gAeNg2p5L.jpg</ImageUrl>
+    <Price>15.99</Price>
+    <observation>sweeeeet</observation>
+  </product>
+  <product>
+    <Sku>005</Sku>
+    <Name>Lipton Tea</Name>
+    <ImageUrl>https://www.caffeineinformer.com/wp-content/caffeine/lipton-tea.jpg</ImageUrl>
+    <Price>23.99</Price>
+    <observation></observation>
+  </product>
+  <product xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <Sku>006</Sku>
+    <Name>Tazo Gen</Name>
+    <ImageUrl>https://maxsupermart.com/image/cache/data/tazo-gen-250x250.jpg</ImageUrl>
+    <Price>35.99</Price>
+    <observation>Not so good</observation>
+  </product>
+  <product>
+    <Sku>007</Sku>
+    <Name>Gatorade</Name>
+    <ImageUrl>http://farma22.vteximg.com.br/arquivos/ids/163117-438-438/PROD_120126234244.jpg</ImageUrl>
+    <Price>42.99</Price>
+    <observation></observation>
+  </product>
+  <product>
+    <Sku>008</Sku>
+    <Name>Lakewood</Name>
+    <ImageUrl>http://www.lakewoodjuices.com/assets/product_slideshow_photo/6.jpg</ImageUrl>
+    <Price>75.99</Price>
+    <observation></observation>
+  </product>
+  <product xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <Sku>009</Sku>
+    <Name>Cookies</Name>
+    <ImageUrl>http://wikilicias.com.br/wp-content/uploads/2014/12/Dauper1.png</ImageUrl>
+    <Price>5.00</Price>
+    <observation>Good one</observation>
+  </product>
+  <product xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <Sku>001</Sku>
+    <Name>Quaker Oats</Name>
+    <ImageUrl>https://images-na.ssl-images-amazon.com/images/I/51o7izvIg0L._SY355_.jpg</ImageUrl>
+    <Price>13.00</Price>
+    <observation>oat</observation>
+  </product>
+</Groceries>

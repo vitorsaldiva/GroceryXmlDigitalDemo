@@ -1,0 +1,115 @@
+﻿@{
+    var itens = ((List<string>)Session["cart"])?.Count;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NonLinear Test - @ViewBag.Title</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("Grocery List Manager", "Index", "Grocery", new { area = "" }, new { @class = "navbar-brand" })
+
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                </ul>
+                <span class="glyphicon glyphicon-shopping-cart"></span><a href="/Cart/Index" style="color:white">( @(itens == null ? 0 : itens) )</a>
+                @*@Html.Partial("_LoginPartial")*@
+
+            </div>
+        </div>
+    </div>
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - <span><a href="http://vitorsaldiva.azurewebsites.net" style="text-decoration:none">Vitor Soares</a></span></p>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+    <script type="text/javascript">
+        $(document).ready(function () {
+            updateTotal();
+
+            $(":checkbox").on("click", function (event) {
+                if (this.checked) {
+                    $.post("/Cart/AddToCart", { sku: $(this).parents("div[class='checkbox']").siblings("input[type='hidden']").val() })
+                    .done(function (data) {
+                        $("a[style='color:white']").text('( ' + data + ' )');
+                    });
+                }
+                else {
+                    $.post("/Cart/RemoveFromCart", { sku: $(this).parents("div[class='checkbox']").siblings("input[type='hidden']").val() })
+                        .done(function (data) {
+                            $("a[style='color:white']").text('( ' + data + ' )');
+                        });
+                }
+            });
+
+            $(".add").on("click", function () {
+                var quantity = Number($(this).siblings("span").text()) + 1;
+                $(this).siblings("span").text(quantity);
+                updateSubTotal(this, quantity);
+                updateTotal();
+            });
+            $(".remove").on("click", function () {
+                var quantity = Number($(this).siblings("span").text())
+                if (quantity > 1) {
+                    quantity--;
+                    $(this).siblings("span").text(quantity);
+                    updateSubTotal(this, quantity);
+                    updateTotal();
+                }
+            });
+            $(".exclude").on("click", function () {
+                var field = $(this).parents("td").siblings("td:first");
+                $.post("/Cart/RemoveFromCart", { sku: field.text().replace(/\r?\n|\r/g, " ") })
+                        .done(function (data) {
+                            $(field).parents("tr").remove();
+                            $("a[style='color:white']").text('( ' + data + ' )');
+                            updateTotal();
+                        });
+            });
+        });
+
+        function updateSubTotal(field, quantity) {
+            var fieldToUpdate = $(field).parent().siblings(":nth-child(6)");
+            var price = $(field).parent().siblings(":nth-child(3)").text().replace(',', '.');
+            var sub = parseFloat(price * quantity).toFixed(2).toString().replace('.', ',');
+            fieldToUpdate.text(sub);
+        }
+
+        function updateTotal() {
+            var total = 0;
+            var subTotalField = $("tr td:nth-child(6)");
+            if (subTotalField.length > 0) {
+                subTotalField.each(function (i, obj) {
+                    total += obj == null ? 0 : parseFloat(obj.innerText.replace(',', '.'));
+                    $("td[colspan='4'] span").text(total.toFixed(2).toString().replace('.', ','));
+                });
+            }
+            else
+                $("td[colspan='4'] span").text(total.toFixed(2).toString().replace('.', ','));
+        }
+
+    </script>
+
+</body>
+</html>
