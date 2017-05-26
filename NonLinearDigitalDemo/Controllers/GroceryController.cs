@@ -16,7 +16,10 @@ namespace NonLinearDigitalDemo.Controllers
         {
             path = Server.MapPath("~/groceries.xml");
             XmlAccess xml = new XmlAccess(path);
-            var products = xml.Get().OrderBy(s => s.Sku);
+            var products = 
+                xml
+                .Get()
+                .OrderBy(s => s.Sku);
             return View(products);
         }
 
