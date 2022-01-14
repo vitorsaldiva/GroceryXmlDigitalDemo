@@ -1,9 +1,9 @@
-function htmlToCSV(tableBodySelector, filename){
+function htmlToCSV(tableBodySelector, tableCellSelector, filename){
     var data = [];
     var rows = document.querySelectorAll(tableBodySelector);
 
     for (var i = 0; i < rows.length; i++) {
-		var row = [], cols = rows[i].querySelectorAll("mb-table-cell, mb-table-row");
+		var row = [], cols = rows[i].querySelectorAll(tableCellSelector);
 				
 		for (var j = 0; j < cols.length; j++) {
 		        row.push(cols[j].innerText);
